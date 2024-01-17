@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Editar Cliente</h1>
+	<hr>
+	<p>Estas modificando el cliente con dni '<a th:text="${dni}"></a>'.</p>
+	<form method="post" th:action="@{/cliente/editarCliente}">
+		<label>DNI_Cliente:</label>
+		<input type="text" placeholder="DNI_Cliente" name="dni" th:value="${cliente.dni}" readonly="readonly">
+		<br><br>
+		
+		<label>Nombre:</label>
+		<input type="text" placeholder="Nombre" name="nombre" th:value="${cliente.nombre}">
+		<br>
+		
+		<label>Direccion:</label>
+		<input type="text" placeholder="Direccion" name="direccion" th:value="${cliente.direccion}">
+		<br>
+		
+		<label>Email:</label>
+		<input type="text" placeholder="Email" name="email" th:value="${cliente.email}">
+		<br>
+		
+		<label>Telefono:</label>
+		<input type="text" placeholder="Telefono" name="telefono" th:value="${cliente.telefono}">
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Actualizar</button>
+	</form>
+	<br>
+	
+	<p th:text="${mensaje}"></p>
+	
+	<a th:href="@{/cliente/listarClientes}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

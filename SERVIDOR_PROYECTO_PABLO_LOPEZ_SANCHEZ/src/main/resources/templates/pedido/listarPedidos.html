@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Listar Pedidos</h1>
+	<hr>
+	
+	<table class="table" style="margin: 20px; width: 60%;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID_Pedido</th>
+            <th scope="col">Fecha_Pedido</th>
+            <th scope="col">Fecha_Entrega</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Factura</th>
+            <th scope="col">Productos</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+		<tr th:each="pedido: ${pedidos}">
+        <td th:text="${pedido.idPedido}"></td>
+        <td th:text="${pedido.fechaPedido}"></td>
+        <td th:text="${pedido.fechaEntrega}"></td>
+        <td th:text="${pedido.cliente.nombre + ' ('+ pedido.cliente.dni +')'}"></td>
+        <td th:text="${pedido.factura.idFactura}"></td>
+        <td>
+            <span th:each="producto: ${pedido.productos}">
+                <span th:text="${producto.descripcion + ' ('+ producto.idProducto +')'}"></span><br>
+            </span>
+        </td>
+        <td>
+            <a th:href="@{'/pedido/verEditarPedido/' + ${pedido.idPedido}}">
+                <button type="button" class="btn btn-primary">Editar</button>
+            </a>
+                
+            <a th:href="@{'/pedido/eliminarPedido/' + ${pedido.idPedido}}">
+                <button type="button" class="btn btn-danger">Eliminar</button>
+            </a>
+        </td>
+        </tr>
+    </tbody>
+	</table>
+    <p th:text="${mensaje}"></p>
+	<a th:href="@{/pedido/indice}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

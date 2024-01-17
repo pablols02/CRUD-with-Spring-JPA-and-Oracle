@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Editar Producto</h1>
+	<hr>
+	<p>Estás modificando el producto con id '<span th:text="${producto.idProducto}"></span>'.</p>
+	<form method="post" th:action="@{/producto/editarProducto}">
+		<label>ID_Producto:</label>
+		<input type="text" placeholder="ID_Producto" name="idProducto" th:value="${producto.idProducto}" readonly="readonly">
+		<br><br>
+		
+		<label>Descripcion:</label>
+		<input type="text" placeholder="Descripcion" name="descripcion" th:value="${producto.descripcion}">
+		<br><br>
+		
+		<label>Existencias:</label>
+		<input type="number" placeholder="Existencias" name="existencias" th:value="${producto.existencias}">
+		<br><br>
+		
+		<label>Precio €:</label>
+		<input type="number" placeholder="Precio" name="precio" th:value="${producto.precio}">
+		<br><br>
+		
+		<label>Fabricante:</label>
+		<select class="form-control" name="fabricante">
+			<option th:each="fabricante : ${fabricantes}"
+                    th:value="${fabricante.cif}"
+                    th:text="${fabricante.nombre + ' ('+ fabricante.cif +')'}"
+                    th:selected="${fabricante.cif eq producto.fabricante.cif}">
+            </option>
+		</select>
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Actualizar</button>
+	</form>
+	<br>
+	
+	<p th:text="${mensaje}"></p>
+	
+	<a th:href="@{/producto/listarProductos}"><button type="button" class="btn btn-info">Volver atrás</button></a>
+</body>
+</html>

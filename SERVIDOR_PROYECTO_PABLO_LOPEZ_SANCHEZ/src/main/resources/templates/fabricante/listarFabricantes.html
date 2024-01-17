@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Listar Fabricantes</h1>
+	<hr>
+	
+	<table class="table" style="margin: 20px; width: 70%;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">CIF_Fabricante</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Clasificacion</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+		<tr th:each="fabricante: ${fabricantes}">
+            <td th:text="${fabricante.cif}"></td>
+            <td th:text="${fabricante.nombre}"></td>
+            <td th:text="${fabricante.clasificacion}"></td>
+            <td>
+                <a th:href="@{'/fabricante/verEditarFabricante/' + ${fabricante.cif}}">
+                    <button type="button" class="btn btn-primary">Editar</button>
+                </a>
+                
+                <a th:href="@{'/fabricante/eliminarFabricante/' + ${fabricante.cif}}">
+                    <button type="button" class="btn btn-danger">Eliminar</button>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+	</table>
+    <p th:text="${mensaje}"></p>
+	<a th:href="@{/fabricante/indice}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Crear Producto</h1>
+	<hr>
+	
+	<form method="post" th:action="@{/producto/crearProducto}">
+		<label>Descripcion:</label>
+		<input type="text" placeholder="Descripcion" name="descripcion">
+		<br><br>
+		
+		<label>Existencias:</label>
+		<input type="number" placeholder="Existencias" name="existencias" value="0">
+		<br><br>
+		
+		<label>Precio €:</label>
+		<input type="number" placeholder="Precio" name="precio" value="0">
+		<br><br>
+		
+		<label>Fabricante:</label>
+		<select class="form-control" name="fabricante">
+			<option th:each="fabricante : ${fabricantes}"
+                    th:value="${fabricante.cif}"
+                    th:text="${fabricante.nombre + ' ('+ fabricante.cif +')'}"></option>
+		</select>
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Crear</button>
+	</form>
+	<br>
+	<p th:text="${mensaje}"></p>
+	<a th:href="@{/producto/indice}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

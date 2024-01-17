@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Crear Pedido</h1>
+	<hr>
+	
+	<form method="post" th:action="@{/pedido/crearPedido}">
+		<label>Fecha del pedido:</label>
+		<input type="date" name="fechaPedido" value="2023-12-10">
+		<br><br>
+		
+		<label>Fecha de entrega:</label>
+		<input type="date" name="fechaEntrega" value="2023-12-12">
+		<br><br>
+		
+		<label>Cliente:</label>
+		<select class="form-control" name="cliente">
+			<option th:each="cliente : ${clientes}"
+                    th:value="${cliente.dni}"
+                    th:text="${cliente.nombre + ' ('+ cliente.dni +')'}"></option>
+		</select>
+		<br>
+		
+		<label>Factura del pedido:</label>
+		<select class="form-control" name="factura">
+			<option th:each="factura : ${facturas}"
+                    th:value="${factura.idFactura}"
+                    th:text="${factura.idFactura}"></option>
+		</select>
+		
+		<label>Productos:</label>
+		<select class="form-control" name="productos" multiple>
+            <option th:each="producto : ${productos}"
+                    th:value="${producto.idProducto}"
+                    th:text="${producto.descripcion + ' ('+ producto.idProducto +')'}"></option>
+        </select>
+		<br>
+		<button type="submit" class="btn btn-primary mb-2">Crear</button>
+	</form>
+	<br>
+	<p th:text="${mensaje}"></p>
+	<a th:href="@{/pedido/indice}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

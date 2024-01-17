@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Editar Usuario</h1>
+	<hr>
+	<p>Estas modificando el usuario con id '<a th:text="${idUsuario}"></a>'.</p>
+	<form method="post" th:action="@{/usuario/editarUsuario}">
+		<label>ID_Usuario:</label>
+		<input type="text" placeholder="ID_Usuario" name="idUsuario" th:value="${usuario.idUsuario}" readonly="readonly">
+		<br><br>
+		
+		<label>Nick:</label>
+		<input type="text" placeholder="Nick" name="nick" th:value="${usuario.nick}">
+		<br>
+		
+		<label>Password:</label>
+		<input type="text" placeholder="Password" name="passwd" th:value="${usuario.passwd}">
+		<br>
+		
+		<label>Rol:</label>
+		<select class="form-control" name="rol">
+			<option th:each="rol : ${roles}"
+                    th:value="${rol.idRol}"
+                    th:text="${rol.descripcion}"
+                    th:selected="${rol.idRol eq usuario.rol.idRol}"></option>
+		</select>
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Actualizar</button>
+	</form>
+	<br>
+	
+	<p th:text="${mensaje}"></p>
+	
+	<a th:href="@{/usuario/listarUsuarios}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

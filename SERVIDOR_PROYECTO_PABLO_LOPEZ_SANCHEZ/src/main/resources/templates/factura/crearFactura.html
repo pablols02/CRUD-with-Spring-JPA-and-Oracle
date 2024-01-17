@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Crear Factura</h1>
+	<hr>
+	
+	<form method="post" th:action="@{/factura/crearFactura}">		
+		<label>Fecha de Emision:</label>
+		<input type="date" name="fechaEmision" value="2023-12-10">
+		<br>
+		
+		<label>Precio total €:</label>
+		<input type="number" placeholder="Total" name="precioTotal" value="0">
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Crear</button>
+	</form>
+	<br>
+	<p th:text="${mensaje}"></p>
+	<a th:href="@{/factura/indice}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

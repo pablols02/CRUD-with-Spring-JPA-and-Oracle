@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Pablo Lopez Sanchez</h1>
+	<hr>
+	<div class="botones">
+		<a th:href="@{/cliente/indice}"><button type="button" id="boton" class="btn btn-primary">Gestion de clientes</button></a>
+		<a th:href="@{/fabricante/indice}"><button type="button" id="boton" class="btn btn-success">Gestion de fabricantes</button></a>
+		<a th:href="@{/factura/indice}"><button type="button" id="boton" class="btn btn-primary">Gestion de factura</button></a>
+		<a th:href="@{/pedido/indice}"><button type="button" id="boton" class="btn btn-success">Gestion de pedidos</button></a>
+		<a th:href="@{/producto/indice}"><button type="button" id="boton" class="btn btn-primary">Gestion de productos</button></a>
+		<a th:href="@{/rol/indice}"><button type="button" id="boton" class="btn btn-success">Gestion de roles</button></a>
+		<a th:href="@{/usuario/indice}"><button type="button" id="boton" class="btn btn-primary">Gestion de usuarios</button></a>
+	</div>
+</body>
+</html>

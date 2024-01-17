@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Crear Rol</h1>
+	<hr>
+	
+	<form method="post" th:action="@{/rol/crearRol}">
+		<label>Descripcion:</label>
+		<input type="text" placeholder="Descripcion del rol" name="descripcion">
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Crear</button>
+	</form>
+	<br>
+	<p th:text="${mensaje}"></p>
+	<a th:href="@{/rol/indice}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

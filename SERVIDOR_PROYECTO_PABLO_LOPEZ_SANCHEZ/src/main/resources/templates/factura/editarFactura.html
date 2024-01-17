@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Editar factura</h1>
+	<hr>
+	<p>Estas modificando la factura con id '<a th:text="${idFactura}"></a>'.</p>
+	<form method="post" th:action="@{/factura/editarFactura}">
+		<label>ID_Factura:</label>
+		<input type="text" placeholder="ID_Factura" name="idFactura" th:value="${factura.idFactura}" readonly="readonly">
+		<br><br>
+		
+		<label>Fecha de emision:</label>
+		<input type="date" name="fechaEmision" th:value="${factura.fechaEmision}">
+		<br>
+		
+		<label>Precio total €:</label>
+		<input type="number" placeholder="Total" name="precioTotal" th:value="${factura.precioTotal}">
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Actualizar</button>
+	</form>
+	<br>
+	
+	<p th:text="${mensaje}"></p>
+	
+	<a th:href="@{/factura/listarFacturas}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>

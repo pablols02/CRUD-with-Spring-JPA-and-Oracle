@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Editar Pedido</h1>
+	<hr>
+	<p>Estás modificando el pedido con id '<span th:text="${pedido.idPedido}"></span>'.</p>
+	<form method="post" th:action="@{/pedido/editarPedido}">
+		<label>ID_Pedido:</label>
+		<input type="text" placeholder="ID_Pedido" name="idPedido" th:value="${pedido.idPedido}" readonly="readonly">
+		<br><br>
+		
+		<label>Fecha del pedido:</label>
+		<input type="date" name="fechaPedido" th:value="${pedido.fechaPedido}">
+		<br>
+		
+		<label>Fecha de entrega:</label>
+		<input type="date" name="fechaEntrega" th:value="${pedido.fechaEntrega}">
+		<br>
+		
+		<label>Cliente:</label>
+		<select class="form-control" name="cliente">
+			<option th:each="cliente : ${clientes}"
+                    th:value="${cliente.dni}"
+                    th:text="${cliente.nombre + ' ('+ cliente.dni +')'}"
+                    th:selected="${cliente.dni eq pedido.cliente.dni}"></option>
+		</select>
+		<br>
+		
+		<label>Factura:</label>
+		<select class="form-control" name="factura">
+			<option th:each="factura : ${facturas}"
+                    th:value="${factura.idFactura}"
+                    th:text="${factura.idFactura}"
+                    th:selected="${factura.idFactura eq pedido.factura.idFactura}"></option>
+		</select>
+		<br>
+		
+		<label>Productos:</label>
+		<select class="form-control" name="productos" multiple>
+			<option th:each="producto : ${productos}"
+                    th:value="${producto.idProducto}"
+                    th:text="${producto.descripcion + ' ('+ producto.idProducto +')'}"
+                    th:selected="${producto.estaEnLaLista}"></option>
+		</select>
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Actualizar</button>
+	</form>
+	<br>
+	
+	<p th:text="${mensaje}"></p>
+	
+	<a th:href="@{/pedido/listarPedidos}"><button type="button" class="btn btn-info">Volver atrás</button></a>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<!--Agregacion de Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="margin: 10px;">
+	<h1>Proyecto - Editar Fabricante</h1>
+	<hr>
+	<p>Estas modificando el fabricante con cif '<a th:text="${cif}"></a>'.</p>
+	<form method="post" th:action="@{/fabricante/editarFabricante}">
+		<label>CIF_Fabricante:</label>
+		<input type="text" placeholder="CIF_Fabricante" name="cif" th:value="${fabricante.cif}" readonly="readonly">
+		<br><br>
+		
+		<label>Nombre:</label>
+		<input type="text" placeholder="Nombre" name="nombre" th:value="${fabricante.nombre}">
+		<br>
+		
+		<label>Clasificacion:</label>
+		<input type="number" placeholder="Clasificacion" name="clasificacion" th:value="${fabricante.clasificacion}">
+		<br>
+		
+		<button type="submit" class="btn btn-primary mb-2">Actualizar</button>
+	</form>
+	<br>
+	
+	<p th:text="${mensaje}"></p>
+	
+	<a th:href="@{/fabricante/listarFabricantes}"><button type="button" class="btn btn-info">Volver atras</button></a>
+</body>
+</html>
